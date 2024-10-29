@@ -57,4 +57,3 @@ class Article_App {
 }
 
 new Article_App();
-#add [article_app] if you want the app to be shown on a page
