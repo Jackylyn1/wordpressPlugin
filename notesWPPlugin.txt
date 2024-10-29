@@ -17,3 +17,9 @@ SWC (Speedy Web Compiler), a fast JavaScript/TypeScript compiler written in Rust
 
 
 defined('ABSPATH') || exit; => to prevent direct access to file
+
+
+plugin_dir_path(__FILE__)
+WordPress-Specific: This function is designed specifically for WordPress plugins and ensures you get a path relative to the plugin directory.
+Consistency with WordPress Standards: Using plugin_dir_path() keeps your code consistent with other WordPress functions, especially if it’s being adapted for use in multiple plugins or within environments where WordPress file paths are crucial.
+Absolute Path: It returns the absolute path to the file and is commonly used in WordPress plugins to maintain clarity and prevent issues when accessing files in different server setups.
