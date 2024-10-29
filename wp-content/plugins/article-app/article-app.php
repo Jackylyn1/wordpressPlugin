@@ -10,12 +10,12 @@ Author: Jacqueline Urban
 
 defined('ABSPATH') || exit;
 
-class articleApp {
+class Article_App {
     protected $absolute_assets_path;
     protected $relative_assets_path;
 
-    public function __construct($subfolderAssets = 'dist/assets/'){
-        $this->relative_assets_path = $subfolderAssets;
+    public function __construct($subfolder_assets = 'dist/assets/'){
+        $this->relative_assets_path = $subfolder_assets;
         $this->absolute_assets_path = plugin_dir_path(__FILE__) . $this->relative_assets_path;
         \add_action('wp_enqueue_scripts', 
         [$this, 'article_app_plugin_enqueue_scripts']);
@@ -27,11 +27,11 @@ class articleApp {
         return '<div id="article-app"></div>';
     }
 
-    private function registerJS(){
-        foreach(glob($this->absolute_assets_path . '*.js') as $jsfilename){
+    private function register_js(){
+        foreach(glob($this->absolute_assets_path . '*.js') as $js_filename){
             wp_enqueue_script(
                 'article-app',
-                plugins_url($this->relative_assets_path . basename($jsfilename), __FILE__),
+                plugins_url($this->relative_assets_path . basename($js_filename), __FILE__),
                 array('wp-element'),
                 '1.0',
                 true
@@ -39,11 +39,11 @@ class articleApp {
         }
     }
 
-    private function registerCSS(){
-        foreach(glob($this->absolute_assets_path . '*.css') as $cssfilename){
+    private function register_css(){
+        foreach(glob($this->absolute_assets_path . '*.css') as $css_filename){
             wp_enqueue_style(
                 'article-app',
-                plugins_url($this->relative_assets_path . basename($cssfilename), __FILE__),
+                plugins_url($this->relative_assets_path . basename($css_filename), __FILE__),
             array('wp-element'),
             '1.0'  
             );
@@ -51,10 +51,10 @@ class articleApp {
     }
 
     public function article_app_plugin_enqueue_scripts(){
-        $this->registerCSS();
-        $this->registerJS();
+        $this->register_css();
+        $this->register_js();
     }
 }
 
-new articleApp();
+new Article_App();
 #add [article_app] if you want the app to be shown on a page
