@@ -1,0 +1,2 @@
+- Magento shop
+- ccm19 Cookie consent manager
