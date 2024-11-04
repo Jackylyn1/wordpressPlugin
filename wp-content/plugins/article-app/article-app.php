@@ -44,7 +44,7 @@ class Article_App {
             wp_enqueue_style(
                 'article-app',
                 plugins_url($this->relative_assets_path . basename($css_filename), __FILE__),
-            array('wp-element'),
+            array(),
             '1.0'  
             );
         }
