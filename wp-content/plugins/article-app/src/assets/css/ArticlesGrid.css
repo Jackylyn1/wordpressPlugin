@@ -1,0 +1,27 @@
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  
+  .article-tile {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .article-image {
+    width: 100%;
+  }
+  
+  .article-title {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .article-author,
+  .article-category {
+    color: #555;
+  }
