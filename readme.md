@@ -14,10 +14,8 @@ plugins/article-app/
 I used Vite for creating the react-App, because it seems to be more straight forward to get quick solutions.
 
 ## To-Do ##
-- Plugin direkt über die Oberfläche installieren können
-- Plugin via Gutenberg Editor einbinden können
-- react so einbinden, dass der Code nicht im Pluin-Ordner liegt, es jedoch automatisch dorthin gerendet werden kann
-- bilder aus assets ordner zum laufen bringen
+update readme.md
+Plugin installierbar via "Article Overview" im Gutenberg Editor
 
 ## Installation ##
 ddev config --project-type=wordpress --docroot=.

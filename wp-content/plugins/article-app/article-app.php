@@ -19,6 +19,7 @@ class Article_App {
         $this->absolute_assets_path = plugin_dir_path(__FILE__) . $this->relative_assets_path;
         \add_action('wp_enqueue_scripts', 
         [$this, 'article_app_plugin_enqueue_scripts']);
+        add_action('enqueue_block_editor_assets', [$this, 'register_article_overview_editor_button']);
         \add_shortcode('article_app', 
         [$this, 'article_app_render']);
     }
@@ -37,6 +38,15 @@ class Article_App {
                 true
             );
         }
+    }
+
+    public function register_article_overview_editor_button(){
+        wp_enqueue_script(
+            'article-overview-block',
+            plugins_url('article-overview-block.js', __FILE__),
+            array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
+            filemtime(plugin_dir_path(__FILE__) . 'article-overview-block.js')
+        );
     }
 
     private function register_css(){

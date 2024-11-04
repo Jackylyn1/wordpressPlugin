@@ -1,6 +1,6 @@
 import './App.css'
-import './components/ArticlesGrid.tsx'
-import ArticlesGrid from './components/ArticlesGrid.tsx'
+import './components/ArticlesGrid'
+import ArticlesGrid from './components/ArticlesGrid'
 
 function App() {
   return (
