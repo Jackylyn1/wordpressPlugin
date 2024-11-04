@@ -19,8 +19,6 @@ class resultsGrid extends APIComponent <{}, APIState<Article>> {
         if (error) {
             return <p>{error}</p>;
         }
-        console.log(this.state);
-        console.log(results);
         return (
         <div className="results-grid">
             {results.map((article: any) => (
