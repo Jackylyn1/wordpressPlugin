@@ -4,8 +4,7 @@ import ArticlesGrid from './components/ArticlesGrid.tsx'
 
 function App() {
   return (
-    <div>
-      <h1>Latest Articles</h1>
+    <div className="has-text-align-center">
       <ArticlesGrid />
     </div>
   )

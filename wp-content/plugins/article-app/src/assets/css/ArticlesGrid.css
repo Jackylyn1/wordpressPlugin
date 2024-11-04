@@ -1,6 +1,7 @@
-  .articles-grid {
+  .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    padding: 12px;
     gap: 16px;
   }
   
@@ -17,11 +18,18 @@
   }
   
   .article-title {
-    font-size: 1.2em;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 39px;
     margin: 10px 0;
   }
   
   .article-author,
   .article-category {
     color: #555;
+    font-size: 12px;
   }
+
+.wp-site-blocks {
+  width: 100%;
+}

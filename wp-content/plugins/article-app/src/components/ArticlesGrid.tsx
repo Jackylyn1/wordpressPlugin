@@ -2,9 +2,12 @@ import APIComponent from './APIComponent';
 import '../assets/css/articlesGrid.css';
 import APIState from '../contracts/apiState';
 import Article from '../contracts/article';
+import UserList from './userList';
+import CategoriesList from './categoriesList';
 
-class resultsGrid extends APIComponent <{}, APIState<Article>> {
+class ResultsGrid extends APIComponent <{}, APIState<Article>> {
     apiEndpoint: string;
+
     constructor(props: any) {
         super(props);
         this.apiEndpoint = 'posts?per_page=12&order=desc';
@@ -25,10 +28,9 @@ class resultsGrid extends APIComponent <{}, APIState<Article>> {
             <div key={article.id} className="article-tile">
                 <img src={article.rumble_app_meta?.featured_image?.url} alt={article.rumble_app_meta?.featured_image?.alt_text} 
                 className="article-image" style={{ maxWidth: article.rumble_app_meta?.featured_image?.width ? `${article.rumble_app_meta.featured_image.width}px` : 'auto' }}/>
+                <p className="article-category"><CategoriesList categoryId={article.categories.join(',')} /></p>
                 <h2 className="article-title">{article.title.rendered}</h2>
-                <p className="article-author">von {article.author}</p>
-                <p className="article-category">{article.categories}</p>
-                <p>{article.id}</p>
+                <p className="article-author"><UserList userId={article.author} /></p>
             </div>
             ))}
         </div>
@@ -36,4 +38,4 @@ class resultsGrid extends APIComponent <{}, APIState<Article>> {
     }
 }
 
-export default resultsGrid;
+export default ResultsGrid;

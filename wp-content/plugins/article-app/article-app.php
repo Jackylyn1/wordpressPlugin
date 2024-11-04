@@ -24,7 +24,7 @@ class Article_App {
     }
 
     public function article_app_render(){
-        return '<div id="article-app"></div>';
+        return '<div id="article-app" class="alignfull"></div>';
     }
 
     private function register_js(){
