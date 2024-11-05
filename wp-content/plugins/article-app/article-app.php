@@ -80,6 +80,36 @@ class Article_App {
     }
 
     /**
+     * Registers CSS files found in the assets directory.
+     *
+     * Enqueues each `.css` file in the assets directory for front-end styling.
+     *
+     * @return void
+     */
+    private function register_css() {
+        foreach (glob($this->absolute_assets_path . '*.css') as $css_filename) {
+            wp_enqueue_style(
+                'article-app',
+                plugins_url($this->relative_assets_path . basename($css_filename), __FILE__),
+                array(),
+                '1.0'
+            );
+        }
+    }
+
+    /**
+     * Enqueues both CSS and JavaScript assets for the front end.
+     *
+     * This method is called during the `wp_enqueue_scripts` action.
+     *
+     * @return void
+     */
+    public function article_app_plugin_enqueue_scripts() {
+        $this->register_css();
+        $this->register_js();
+    }
+    
+    /**
      * Enqueues JavaScript for the block editor button in the Gutenberg editor.
      *
      * Registers the `article-overview-block.js` script, which adds a custom button to the block editor.
@@ -110,36 +140,6 @@ class Article_App {
                 return do_shortcode('[article_app]');
             }
         ));
-    }
-
-    /**
-     * Registers CSS files found in the assets directory.
-     *
-     * Enqueues each `.css` file in the assets directory for front-end styling.
-     *
-     * @return void
-     */
-    private function register_css() {
-        foreach (glob($this->absolute_assets_path . '*.css') as $css_filename) {
-            wp_enqueue_style(
-                'article-app',
-                plugins_url($this->relative_assets_path . basename($css_filename), __FILE__),
-                array(),
-                '1.0'
-            );
-        }
-    }
-
-    /**
-     * Enqueues both CSS and JavaScript assets for the front end.
-     *
-     * This method is called during the `wp_enqueue_scripts` action.
-     *
-     * @return void
-     */
-    public function article_app_plugin_enqueue_scripts() {
-        $this->register_css();
-        $this->register_js();
     }
 }
 

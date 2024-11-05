@@ -1,28 +1,42 @@
 ## Introduction | Explaination ##
 ### /wp-content/plugins/article-app/Article-app.php ###
-1. I decided to make it a class, so I can reuse some variables in Object context and have everything needed on startup in the constructor. Because it was only a small script no complex architecture was needed.
-2. I made the registration of the .js and .css more flexible, so they will be loaded with dynamic filenames even if the name of the file changes, which happens for example after a rebuild of the React Application.
-3. I also registered the Button for the "Gutenberg-Editor" and the shortcode for the App "[article_app]" here. It has the name "Article Overview".
+1. I structured this code as a class to allow reuse of variables in an object-oriented context, consolidating everything needed on startup in the constructor. Given that this is a small script, a more complex architecture wasn’t necessary.
+2. I made the JavaScript and CSS registration more flexible, enabling dynamic filenames. This ensures that files are loaded correctly, even if filenames change after rebuilding the React application.
+3. I registered the button for the Gutenberg editor here, as well as the app’s shortcode [article_app]. This button is labeled "Article Overview."
 
 ### /wp-content/plugins/article-app/Article-overview-block.js ###
-1. The Button for the "Gutenberg-Editor" is created here and added to the editor.
+1. This file creates the button for the Gutenberg editor and adds it to the editor interface.
 
 ### /wp-content/plugins/article-app/src (React) ###
-1. I decided to use a basic structure for Components which handle the API-calls. They are extending from an abstract class with already implements some basic API-Calls.
-3. Every Result of an API-Call has a state, a resultset and potential errors. So I decided to make an Interface for Results.
-3.1. Because every resultset of the child classes (e.g. user, article, category) can have a different structure I decided to use generic Types for results inside of the API-Call Class
-3.2. I also added Interfaces for the different types to enhance type security
-4. Apps root ist app.tsx
+1. I implemented a basic structure for components that handle API calls. Components inherit from an abstract class that already implements common API calls.
+2. Each API call result has a state, a result set, and potential errors. I created an interface to standardize results.
+2.1. Since child classes (e.g., user, article, category) may have different data structures, I used generic types for results within the API call class.
+2.2. Additionally, I defined specific interfaces for each type to ensure type safety.
+3. The app’s root file is app.tsx.
 
 ### DDEV ###
-1. I added pre-stop and post-start-hooks for exporting and importing the database so you won't have to install anything after you checked out the repo from git.
+1. I added pre-stop and post-start hooks for exporting and importing the database, so after checking out the repository, no additional setup is required.
 
 ### What would I have done if I had more time ###
-1. I would have invested more time for thinking about architecture, especially inside of the react-App. 
-1.1. I still have some open questions about this e.g. I could have implemented services or think about using contexts. 
-1.2. There also could have been better options to implement the users instead of using render inside of a component.
-2. I would have added phpdocs
-3. More thoughts about efficient API-Calls. E.g. get the users and categories all together instead of getting every single one after another.
+1. I would invest more time in planning the app’s architecture, particularly within the React app.
+1.1. I would explore solutions like implementing services or using contexts.
+1.2. There could also be more efficient ways to manage user data rather than rendering it within a component.
+2. I’d refine API calls to improve efficiency. For instance, retrieving users and categories in a single request rather than making separate requests.
+
+### Did I use a framework? ###
+No
+
+### What does Clean-Code mean to me ###
+Clean code to me means maintainable, readable, and efficient code. The most important clean-code principles I follow include:
+
+1. Readability and clarity e.g.: Use meaningful names for variables, functions, and objects.
+2. Logical organization: Keep related code together and avoid redundancy.
+3. Function structure: Keep functions concise, with minimal arguments and a single purpose.
+4. Minimal comments: Write code that documents itself, with comments reserved for complex logic or PHPDocs.
+5. Consistent formatting and a clear project structure.
+
+### Do I programm OOP or functional? ###
+I chose OOP for better modularity, easier maintenance, and to make the codebase easier to extend. Although the project is currently small, using OOP allows for scaling, for example, by adding more API functionality in the future.
 
 ## dependencies ##
 - Docker
@@ -32,22 +46,22 @@
 ## Start the project ##
 1. run "ddev start"
 2. open https://wordpressplugin.ddev.site
-3. that's it ;)
+3. If it doesn’t load immediately, wait a moment and refresh the page.
 
 ### Logindata ###
-* Path: https://wordpressplugin.ddev.site/wp-admin/
+* Url: https://wordpressplugin.ddev.site/wp-admin/
 * Username: Admin
 * Password: Password
 
 
 ## structure ##
-you can find all files releated to the app in
-plugins/article-app/
+All files related to the app are located in plugins/article-app/.
 
 ## Used technologies ##
-I used React and Wordpress as base technologies. Additionally I used the following:
+This project uses React and WordPress as the base technologies, with additional tools as follows:
+
 ### Vite ###
-I used Vite for creating the React-App, because it seems to be more straight forward to get quick solutions, than f.e. next.js. It also gives me a base structure for the beginning and some functionalities.
+I used Vite to create the React app. It provides a simple and efficient setup, making it a quicker solution than Next.js for this project. It also offers a foundational structure and some built-in functionalities.
 
 ### ddev ###
-I wanted to have a testing environment you can use easily on your own system.
+To facilitate an easy-to-use testing environment, I set up DDEV, allowing the project to run on any system with minimal setup.
