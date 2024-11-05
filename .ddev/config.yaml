@@ -274,6 +274,11 @@ hooks:
   pre-stop:
     - exec-host: "ddev export-db -f .ddev/import-db/db.sql.gz"
   post-start:
+    - exec-host: "ddev import-db --file=.ddev/import-db/db.sql.gz 
+      && cd wp-content/plugins/article-appd 
+      && npm install
+      && npm run build"
+    - exec-host: "ddev import-db --file=.ddev/import-db/db.sql.gz"
     - exec-host: "ddev import-db --file=.ddev/import-db/db.sql.gz"
 
 # Many DDEV commands can be extended to run tasks before or after the
