@@ -14,6 +14,9 @@
 3.2. I also added Interfaces for the different types to enhance type security
 4. Apps root ist app.tsx
 
+### DDEV ###
+1. I added pre-stop and post-start-hooks for exporting and importing the database so you won't have to install anything after you checked out the repo from git.
+
 ### What would I have done if I had more time ###
 1. I would have invested more time for thinking about architecture, especially inside of the react-App. 
 1.1. I still have some open questions about this e.g. I could have implemented services or think about using contexts. 
@@ -21,58 +24,24 @@
 2. I would have added phpdocs
 3. More thoughts about efficient API-Calls. E.g. get the users and categories all together instead of getting every single one after another.
 
-
-## Start the project ##
-run "ddev start"
-open https://wordpressplugin.ddev.site
-
 ## dependencies ##
 - Docker
+- ddev
 - npm
+
+## Start the project ##
+1. run "ddev start"
+2. open https://wordpressplugin.ddev.site
+3. that's it ;)
 
 ## structure ##
 you can find all files releated to the app in
 plugins/article-app/
 
 ## Used technologies ##
+I used React and Wordpress as base technologies. Additionally I used the following:
 ### Vite ###
-I used Vite for creating the React-App, because it seems to be more straight forward to get quick solutions, than f.e. next.js. It also gives me a base structure for the beginning and some functionalities..
+I used Vite for creating the React-App, because it seems to be more straight forward to get quick solutions, than f.e. next.js. It also gives me a base structure for the beginning and some functionalities.
 
-## To-Do ##
-update readme.md
-Plugin installierbar via "Article Overview" im Gutenberg Editor
-
-## Installation ##
-ddev config --project-type=wordpress --docroot=.
-ddev start
-ddev wp core download
-ddev wp config create --dbname="db" --dbuser="db" --dbpass="db" --dbhost="ddev-wordpressPlugin-db"?
-ddev wp db create?
-ddev wp core install --url="https://wp-plugin.ddev.site" --title="My WordPress Plugin" --admin_user="admin" --admin_password="password" --admin_email="admin@example.com"
-ddev wp rewrite flush
-ddev restart
-
-ddev wp option get siteurl
-
----
-
-Plugin erstellen
-npm init -y
-npm install -g npm (update npm)
-npx clear-npx-cache
-npm create vite@latest article-app --template react
-cd article-app
-npm install
-npm run dev (führt laufend automatisch builds bei Änderungen durch)
-npm run build (führt bei Eingabe build durch)
-
----
-Plugin aktivieren
-- wp adminpanel Plugins > Installed Plugins
-
-getestete VS-Code Extensions:
-- Wordpress Development Toolkit
-- WordPress Snippets
-
-ablauf:
-- scripts enqueuen (actions are the hooks, that the wp-core launches at specific points)
+### ddev ###
+I wanted to have a testing environment you can use easily on your own system.
