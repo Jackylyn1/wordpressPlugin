@@ -34,6 +34,12 @@
 2. open https://wordpressplugin.ddev.site
 3. that's it ;)
 
+### Logindata ###
+* Path: https://wordpressplugin.ddev.site/wp-admin/
+* Username: Admin
+* Password: Password
+
+
 ## structure ##
 you can find all files releated to the app in
 plugins/article-app/
