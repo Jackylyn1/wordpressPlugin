@@ -42,10 +42,10 @@ class Article_App {
     public function __construct($subfolder_assets = 'dist/assets/') {
         $this->relative_assets_path = $subfolder_assets;
         $this->absolute_assets_path = plugin_dir_path(__FILE__) . $this->relative_assets_path;
-
+        \add_shortcode('article_app', [$this, 'article_app_render']);
         \add_action('wp_enqueue_scripts', [$this, 'article_app_plugin_enqueue_scripts']);
         \add_action('enqueue_block_editor_assets', [$this, 'register_article_overview_editor_button']);
-        \add_shortcode('article_app', [$this, 'article_app_render']);
+        \add_action('init', [$this, 'register_article_overview_block']);
     }
 
     /**
@@ -93,6 +93,23 @@ class Article_App {
             array('wp-blocks', 'wp-element', 'wp-editor', 'wp-data'),
             filemtime(plugin_dir_path(__FILE__) . 'article-overview-block.js')
         );
+    }
+
+    /**
+     * Registers the custom 'Article Overview' block with a render callback
+     * that processes the [article_app] shortcode on the front end.
+     *
+     * This function registers a block type that will render dynamically
+     * using the output of the [article_app] shortcode.
+     *
+     * @return void
+     */
+    function register_article_overview_block() {
+        register_block_type('custom/article-overview', array(
+            'render_callback' => function() {
+                return do_shortcode('[article_app]');
+            }
+        ));
     }
 
     /**
