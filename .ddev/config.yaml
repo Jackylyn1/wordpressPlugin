@@ -275,7 +275,7 @@ hooks:
     - exec-host: "ddev export-db -f .ddev/import-db/db.sql.gz"
   post-start:
     - exec-host: "ddev import-db --file=.ddev/import-db/db.sql.gz 
-      && cd wp-content/plugins/article-appd 
+      && cd wp-content/plugins/article-app 
       && npm install
       && npm run build"
     - exec-host: "ddev import-db --file=.ddev/import-db/db.sql.gz"
